@@ -14,7 +14,7 @@ const workoutSchema = new mongoose.Schema({
 	thumbnail: String,
 })
 
-workoutSchema.set('toJson', {
+workoutSchema.set('toJSON', {
 	transform: (document, returnedObject) => {
 		returnedObject.id = returnedObject._id.toString()
 		delete returnedObject._id

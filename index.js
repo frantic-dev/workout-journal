@@ -25,7 +25,16 @@ app.get('/api/workouts', (request, response, next) => {
 	Workout.find({}).then((workouts) => response.json(workouts))
 })
 
-app.get('/api/workouts', (request, response, next) => {})
+app.post('/api/workouts', (request, response, next) => {
+	const body = request.body
+	const workout = new Workout({
+		url: body.url,
+		title: body.title,
+		thumbnail: body.thumbnail,
+	})
+
+	workout.save().then((savedWorkout) => response.json(savedWorkout))
+})
 
 const unknownEndpoint = (request, response) => {
 	response.status(404).send({ error: 'unknown endpoint' })
