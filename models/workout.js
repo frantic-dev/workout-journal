@@ -12,6 +12,10 @@ const workoutSchema = new mongoose.Schema({
 	url: String,
 	title: String,
 	thumbnail: String,
+	intensity: Number,
+	variety: Number,
+	fatigue: Number,
+	enjoyment: Number,
 })
 
 workoutSchema.set('toJSON', {

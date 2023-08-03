@@ -24,7 +24,9 @@ app.get('/', (req, res) => {
 const getYoutubeTitle = require('get-youtube-title')
 
 app.get('/api/workouts', (request, response, next) => {
-	Workout.find({}).then((workouts) => response.json(workouts))
+	Workout.find({})
+		.then((workouts) => response.json(workouts))
+		.catch((error) => next(error))
 })
 
 app.get('/api/title/:id', (request, response, next) => {
@@ -40,9 +42,22 @@ app.post('/api/workouts', (request, response, next) => {
 		url: body.url,
 		title: body.title,
 		thumbnail: body.thumbnail,
+		intensity: body.intensity,
+		variety: body.variety,
+		enjoyment: body.enjoyment,
+		fatigue: body.fatigue,
 	})
 
-	workout.save().then((savedWorkout) => response.json(savedWorkout))
+	workout
+		.save()
+		.then((savedWorkout) => response.json(savedWorkout))
+		.catch((error) => next(error))
+})
+
+app.delete('/api/workouts/:id', (request, response, next) => {
+	Workout.findByIdAndDelete(request.params.id)
+		.then((result) => response.status(404).end())
+		.catch((error) => next(error))
 })
 
 const unknownEndpoint = (request, response) => {
@@ -50,6 +65,17 @@ const unknownEndpoint = (request, response) => {
 }
 
 app.use(unknownEndpoint)
+
+const errorHandler = (error, request, response, next) => {
+	console.log(error.message)
+
+	if (error.name === 'CastError') {
+		return response.status(400).send({ error: 'mal formated id' })
+	}
+	next(error)
+}
+
+app.use(errorHandler)
 
 const PORT = process.env.PORT
 app.listen(PORT, () => {

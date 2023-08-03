@@ -8,9 +8,14 @@ Content-Type: application/json
 {
   "url": "https://www.youtube.com/watch?v=z7H4ZTeVHxk&list=RDMM&index=8",
   "title": "강다니엘(KANGDANIEL) - Don't Tell (Feat. Jessi) M/V",
-  "thumbnail": "https://i.ytimg.com/vi/z7H4ZTeVHxk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD79qNUEsuYyQk_MFX0hxXuk3B_hg"
+  "thumbnail": "https://i.ytimg.com/vi/z7H4ZTeVHxk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD79qNUEsuYyQk_MFX0hxXuk3B_hg",
+  "variety": "4"
 }
 
 ###
 
 GET http://localhost:3001/api/title/ixkoVwKQaJg
+
+###
+
+DELETE http://localhost:3001/api/workouts/64cc0bef1da287c82c6a585c
