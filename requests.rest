@@ -10,3 +10,7 @@ Content-Type: application/json
   "title": "강다니엘(KANGDANIEL) - Don't Tell (Feat. Jessi) M/V",
   "thumbnail": "https://i.ytimg.com/vi/z7H4ZTeVHxk/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG&rs=AOn4CLD79qNUEsuYyQk_MFX0hxXuk3B_hg"
 }
+
+###
+
+GET http://localhost:3001/api/title/ixkoVwKQaJg

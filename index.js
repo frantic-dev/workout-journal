@@ -21,8 +21,17 @@ app.get('/', (req, res) => {
 	res.send('<h3>Hello world </h3>')
 })
 
+const getYoutubeTitle = require('get-youtube-title')
+
 app.get('/api/workouts', (request, response, next) => {
 	Workout.find({}).then((workouts) => response.json(workouts))
+})
+
+app.get('/api/title/:id', (request, response, next) => {
+	const id = request.params.id
+	getYoutubeTitle(id, process.env.API_KEY, (err, title) => {
+		response.send(title)
+	})
 })
 
 app.post('/api/workouts', (request, response, next) => {
@@ -46,30 +55,3 @@ const PORT = process.env.PORT
 app.listen(PORT, () => {
 	console.log(`server running on ${PORT} port`)
 })
-
-// const youtubeThumbnail = require('youtube-thumbnail')
-
-// const thumbnail = youtubeThumbnail(
-// 	'https://www.youtube.com/watch?v=8qlSDwbdFk4'
-// )
-
-// console.log(thumbnail)
-
-// const getYoutubeTitle = require('get-youtube-title')
-
-// function getYbId(url) {
-// 	let idIndex = url.indexOf('v=')
-// 	console.log(idIndex)
-// 	console.log(url.slice(idIndex + 2))
-// 	return url.slice(idIndex + 2)
-// }
-
-// const url = 'https://www.youtube.com/watch?v=o6iVoV_9pks'
-
-// getYoutubeTitle(
-// 	getYbId(url),
-// 	'AIzaSyBGk9pbtLDOlEoXdrImVHI7wDNQE7sWZrw',
-// 	(err, title) => {
-// 		console.log(title)
-// 	}
-// )
